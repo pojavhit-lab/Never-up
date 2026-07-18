@@ -3,75 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> PojavTiers | LEADERBOARD </title>
+    <title> Horizon Tiers | LEADERBOARD </title>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body class="p-4 md:p-8">
 
-    <header class="max-w-6xl mx-auto flex justify-between items-center mb-8">
-        <div>
-            <p class="text-[10px] text-gray-600 tracking-[3px] uppercase font-bold">Developer</p>
-            <h2 class="text-xl font-black bg-gradient-to-r from-purple-500 to-blue-400 bg-clip-text text-transparent uppercase">ANKITCRAFTFIRE</h2>
-        </div>
-        <a href="https://discord.gg/z8Mgz9Qv" target="_blank" class="bg-[#5865F2] hover:scale-110 transition p-3 rounded-xl shadow-lg shadow-[#5865f2]/20">
-            <i class="fab fa-discord text-2xl text-white"></i>
-        </a>
-    </header>
-
-    <div class="text-center mb-10">
-        <h1 class="text-5xl md:text-7xl font-black italic uppercase tracking-tighter text-white">Pojav <span class="text-red-600">Tiers</span></h1>
-        <p class="text-gray-500 text-[10px] tracking-[5px] mt-2 font-black uppercase">Official Ranking System</p>
+<header class="max-w-6xl mx-auto flex justify-between items-center mb-8">
+    <div>
+        <p class="text-[10px] text-gray-600 tracking-[3px] uppercase font-bold">Developer</p>
+        <h2 class="text-xl font-black bg-gradient-to-r from-purple-500 to-blue-400 bg-clip-text text-transparent uppercase">
+            POJAVHITGOAT1
+        </h2>
     </div>
 
-    <div class="max-w-6xl mx-auto mb-10 px-2">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/5 pb-6">
-            <div class="flex overflow-x-auto space-x-3 no-scrollbar flex-grow pr-4">
-                <button class="tab-btn active" onclick="switchTab('Overall')">OVERALL</button>
-                <button class="tab-btn" onclick="switchTab('NetheritePotion')">NETHERITE POT</button>
-                <button class="tab-btn" onclick="switchTab('DiamondPotion')">DIAMOND POT</button>
-                <button class="tab-btn" onclick="switchTab('Crystals')">CRYSTALS</button>
-                <button class="tab-btn" onclick="switchTab('Swords')">SWORDS</button>
-                <button class="tab-btn" onclick="switchTab('Axe')">AXE</button>
-                <button class="tab-btn" onclick="switchTab('UHC')">UHC</button>
-                <button class="tab-btn" onclick="switchTab('SMP')">SMP</button>
-                <button class="tab-btn" onclick="switchTab('Mace')">MACE</button>
-                <button class="tab-btn" onclick="switchTab('CartPvP')">CART PVP</button>
-                <button class="tab-btn" onclick="switchTab('DiamondSMP')">DIAMOND SMP</button>
-            </div>
-            <div class="relative min-w-[240px]">
-                <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-600 text-[10px]"></i>
-                <input type="text" id="playerSearch" onkeyup="filterPlayers()" placeholder="Search Player..." 
-                    class="bg-[#111113] border border-white/5 text-white text-[11px] rounded-xl py-3 pl-10 pr-4 w-full focus:outline-none focus:border-red-600 transition font-bold uppercase tracking-widest">
+    <a href="https://discord.gg/ZuuppfJQs" target="_blank"
+       class="bg-[#5865F2] hover:scale-110 transition p-3 rounded-xl shadow-lg shadow-[#5865f2]/20">
+        <i class="fab fa-discord text-2xl text-white"></i>
+    </a>
+</header>
+
+<!-- TITLE -->
+<div class="text-center mb-10">
+    <h1 class="text-5xl md:text-7xl font-black italic uppercase tracking-tighter text-white">
+        HORIZON <span class="text-purple-500">TIERS</span>
+    </h1>
+    <p class="text-gray-500 text-[10px] tracking-[5px] mt-2 font-black uppercase">
+        Official Ranking System
+    </p>
+</div>
+
+<!-- GAME MODES -->
+<div class="max-w-6xl mx-auto mb-10 px-2">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/5 pb-6">
+
+        <div class="flex overflow-x-auto space-x-3 no-scrollbar flex-grow pr-4">
+
+            <!-- CLICKABLE GAME MODES -->
+            <button class="tab-btn active" onclick="switchTab('Overall', this)">OVERALL</button>
+            <button class="tab-btn" onclick="switchTab('NetheritePotion', this)">NETHERITE POT</button>
+            <button class="tab-btn" onclick="switchTab('DiamondPotion', this)">DIAMOND POT</button>
+            <button class="tab-btn" onclick="switchTab('Crystals', this)">CRYSTALS</button>
+            <button class="tab-btn" onclick="switchTab('Swords', this)">SWORDS</button>
+            <button class="tab-btn" onclick="switchTab('Axe', this)">AXE</button>
+            <button class="tab-btn" onclick="switchTab('UHC', this)">UHC</button>
+            <button class="tab-btn" onclick="switchTab('SMP', this)">SMP</button>
+            <button class="tab-btn" onclick="switchTab('Mace', this)">MACE</button>
+            <button class="tab-btn" onclick="switchTab('CartPvP', this)">CART PVP</button>
+            <button class="tab-btn" onclick="switchTab('DiamondSMP', this)">DIAMOND SMP</button>
+
+        </div>
+
+        <!-- SEARCH -->
+        <div class="relative min-w-[240px]">
+            <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-600 text-[10px]"></i>
+
+            <input type="text" id="playerSearch" onkeyup="filterPlayers()" placeholder="Search Player..."
+                   class="bg-[#111113] border border-white/5 text-white text-[11px] rounded-xl py-3 pl-10 pr-4 w-full focus:outline-none focus:border-purple-500 transition font-bold uppercase tracking-widest">
+        </div>
+
+    </div>
+</div>
+
+<!-- CONTENT -->
+<div id="tiers-container" class="max-w-4xl mx-auto px-2"></div>
+
+<!-- MODAL -->
+<div id="skinModal">
+    <div class="bg-[#161618] p-10 rounded-3xl border border-gray-800 shadow-2xl relative text-center max-w-md w-full mx-4 modal-content-anim">
+
+        <span class="absolute top-4 right-6 text-3xl text-gray-600 cursor-pointer hover:text-white transition"
+              onclick="closeSkinModal()">&times;</span>
+
+        <div class="flex justify-center mb-8">
+            <div class="big-circle">
+                <img id="modalAvatar" src="" class="waist-up-skin">
             </div>
         </div>
-    </div>
 
-    <div id="tiers-container" class="max-w-4xl mx-auto px-2"></div>
+        <h3 id="modalName" class="text-4xl font-black uppercase italic"></h3>
+        <p id="modalRegion" class="text-[10px] text-gray-500 font-black tracking-[0.3em]"></p>
+        <p id="modalTierBadge"></p>
 
-    <div id="skinModal">
-        <div class="bg-[#161618] p-10 rounded-3xl border border-gray-800 shadow-2xl relative text-center max-w-md w-full mx-4 modal-content-anim">
-            <span class="absolute top-4 right-6 text-3xl text-gray-600 cursor-pointer hover:text-white transition" onclick="closeSkinModal()">&times;</span>
-            
-            <div class="flex justify-center mb-8">
-                <div class="big-circle">
-                    <img id="modalAvatar" src="" alt="Skin" class="waist-up-skin">
-                </div>
-            </div>
-
-            <div>
-                <h3 id="modalName" class="text-4xl font-black uppercase italic tracking-tighter"></h3>
-                <p id="modalRegion" class="text-[10px] text-gray-500 font-black tracking-[0.3em] mt-1 mb-4"></p>
-                <p id="modalTierBadge"></p>
-                <div class="mt-8 py-3 px-8 bg-black/40 rounded-2xl inline-block border border-white/5">
-                    <p class="text-gray-500 font-bold uppercase text-[9px] tracking-widest mb-1">Combat Rating</p>
-                    <span id="modalPts" class="text-yellow-400 text-2xl font-black italic"></span>
-                </div>
-            </div>
+        <div class="mt-8 py-3 px-8 bg-black/40 rounded-2xl inline-block border border-white/5">
+            <p class="text-gray-500 text-[9px]">Combat Rating</p>
+            <span id="modalPts" class="text-yellow-400 text-2xl font-black italic"></span>
         </div>
-    </div>
 
-    <script src="script.js"></script>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+<!-- NEW JS FEATURE -->
+<script>
+function switchTab(tabName, element) {
+    // remove active
+    document.querySelectorAll(".tab-btn").forEach(btn => btn.classList.remove("active"));
+
+    // add active to clicked
+    element.classList.add("active");
+
+    // animation effect
+    element.classList.add("scale-110");
+    setTimeout(() => {
+        element.classList.remove("scale-110");
+    }, 150);
+
+    // call your existing logic
+    loadTierData(tabName);
+}
+</script>
+
 </body>
-</html>
+            </html>
