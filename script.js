@@ -14,17 +14,15 @@
 <!-- HEADER -->
 <header class="max-w-6xl mx-auto flex justify-between items-center mb-6">
 
-<div class="flex items-center gap-3">
 <div>
 <p class="text-xs text-gray-500">Developer</p>
 <h2 class="text-xl text-purple-400 font-bold">POJAVHITGOAT1</h2>
 </div>
 
 <button onclick="unlockAndAdd()"
-class="bg-purple-600 px-2 py-1 text-xs rounded-full">
-+
+class="bg-purple-600 px-3 py-1 text-sm rounded-full">
+➕
 </button>
-</div>
 
 </header>
 
@@ -33,7 +31,7 @@ class="bg-purple-600 px-2 py-1 text-xs rounded-full">
 HORIZON <span class="text-purple-500">TIERS</span>
 </h1>
 
-<!-- GAMEMODE SWITCH -->
+<!-- GAMEMODE -->
 <div class="flex justify-center gap-3 mb-6">
 <button onclick="switchMode('Overall')" class="px-3 py-1 bg-gray-800 rounded">Overall</button>
 <button onclick="switchMode('Crystal')" class="px-3 py-1 bg-gray-800 rounded">Crystal</button>
@@ -45,7 +43,7 @@ HORIZON <span class="text-purple-500">TIERS</span>
 
 <!-- MODAL -->
 <div id="skinModal" class="hidden fixed inset-0 bg-black/70 flex justify-center items-center">
-<div class="bg-[#161618] p-6 rounded-xl text-center">
+<div class="bg-[#161618] p-6 rounded-xl text-center w-64">
 
 <span onclick="closeModal()" class="cursor-pointer text-2xl float-right">×</span>
 
@@ -60,7 +58,7 @@ HORIZON <span class="text-purple-500">TIERS</span>
 
 <script>
 
-// 📦 DATA
+// 📦 DEFAULT DATA
 let players = {
     Overall: [],
     Crystal: [],
@@ -69,9 +67,22 @@ let players = {
 
 let currentMode = "Overall";
 
-// 🔄 LOAD
+// 🔄 SAFE LOAD
 let saved = localStorage.getItem("playersData");
-if (saved) players = JSON.parse(saved);
+
+if (saved) {
+    try {
+        let parsed = JSON.parse(saved);
+
+        players = {
+            Overall: parsed.Overall || [],
+            Crystal: parsed.Crystal || [],
+            Sword: parsed.Sword || []
+        };
+    } catch (e) {
+        localStorage.clear();
+    }
+}
 
 // 🔐 PASSWORD
 const ADMIN_PASSWORD = "pojavhit2026";
@@ -98,17 +109,19 @@ function unlockAndAdd() {
         if (mode == "2") selected = "Crystal";
         if (mode == "3") selected = "Sword";
 
-        let tier = prompt("Tier:");
+        let tier = prompt("Tier (S/A/B):");
         let pts = prompt("Points:");
 
-        if (!tier || isNaN(pts)) {
+        if (!name || !tier || pts === null || pts === "" || isNaN(pts)) {
             alert("Invalid ❌");
             return;
         }
 
+        if (!players[selected]) players[selected] = [];
+
         players[selected].push({
             name: name,
-            tier: tier,
+            tier: tier.toUpperCase(),
             points: parseInt(pts)
         });
 
@@ -116,7 +129,7 @@ function unlockAndAdd() {
 
         switchMode(selected);
 
-        alert("Added in " + selected + " ✅");
+        alert("Player Added ✅");
 
     } else {
         alert("Wrong Password ❌");
@@ -128,6 +141,8 @@ function loadPlayers() {
 
     let container = document.getElementById("tiers-container");
     container.innerHTML = "";
+
+    if (!players[currentMode]) return;
 
     players[currentMode].sort((a,b)=>b.points-a.points);
 
@@ -158,7 +173,7 @@ function loadPlayers() {
     });
 }
 
-// 🗑️ DELETE
+// 🗑️ DELETE PLAYER
 function deletePlayer(index, event) {
 
     event.stopPropagation();
