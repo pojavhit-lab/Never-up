@@ -12,18 +12,31 @@
 
 <body class="p-4 md:p-8">
 
+<!-- HEADER -->
 <header class="max-w-6xl mx-auto flex justify-between items-center mb-8">
-    <div>
-        <p class="text-[10px] text-gray-600 tracking-[3px] uppercase font-bold">Developer</p>
-        <h2 class="text-xl font-black bg-gradient-to-r from-purple-500 to-blue-400 bg-clip-text text-transparent uppercase">
-            POJAVHITGOAT1
-        </h2>
+
+    <!-- LEFT SIDE -->
+    <div class="flex items-center gap-3">
+        <div>
+            <p class="text-[10px] text-gray-600 tracking-[3px] uppercase font-bold">Developer</p>
+            <h2 class="text-xl font-black bg-gradient-to-r from-purple-500 to-blue-400 bg-clip-text text-transparent uppercase">
+                POJAVHITGOAT1
+            </h2>
+        </div>
+
+        <!-- 🔥 SMALL + BUTTON -->
+        <button onclick="unlockAndAdd()"
+        class="bg-purple-600 text-white text-[10px] px-2 py-1 rounded-full hover:bg-purple-800 leading-none">
+            +
+        </button>
     </div>
 
-    <a href="https://discord.gg/ZuuppfJQs" target="_blank"
+    <!-- DISCORD -->
+    <a href="https://discord.gg/z8Mgz9Qv" target="_blank"
        class="bg-[#5865F2] hover:scale-110 transition p-3 rounded-xl shadow-lg shadow-[#5865f2]/20">
         <i class="fab fa-discord text-2xl text-white"></i>
     </a>
+
 </header>
 
 <!-- TITLE -->
@@ -41,8 +54,6 @@
     <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/5 pb-6">
 
         <div class="flex overflow-x-auto space-x-3 no-scrollbar flex-grow pr-4">
-
-            <!-- CLICKABLE GAME MODES -->
             <button class="tab-btn active" onclick="switchTab('Overall', this)">OVERALL</button>
             <button class="tab-btn" onclick="switchTab('NetheritePotion', this)">NETHERITE POT</button>
             <button class="tab-btn" onclick="switchTab('DiamondPotion', this)">DIAMOND POT</button>
@@ -54,13 +65,11 @@
             <button class="tab-btn" onclick="switchTab('Mace', this)">MACE</button>
             <button class="tab-btn" onclick="switchTab('CartPvP', this)">CART PVP</button>
             <button class="tab-btn" onclick="switchTab('DiamondSMP', this)">DIAMOND SMP</button>
-
         </div>
 
         <!-- SEARCH -->
         <div class="relative min-w-[240px]">
             <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-600 text-[10px]"></i>
-
             <input type="text" id="playerSearch" onkeyup="filterPlayers()" placeholder="Search Player..."
                    class="bg-[#111113] border border-white/5 text-white text-[11px] rounded-xl py-3 pl-10 pr-4 w-full focus:outline-none focus:border-purple-500 transition font-bold uppercase tracking-widest">
         </div>
@@ -73,9 +82,9 @@
 
 <!-- MODAL -->
 <div id="skinModal">
-    <div class="bg-[#161618] p-10 rounded-3xl border border-gray-800 shadow-2xl relative text-center max-w-md w-full mx-4 modal-content-anim">
+    <div class="bg-[#161618] p-10 rounded-3xl border border-gray-800 shadow-2xl relative text-center max-w-md w-full mx-4">
 
-        <span class="absolute top-4 right-6 text-3xl text-gray-600 cursor-pointer hover:text-white transition"
+        <span class="absolute top-4 right-6 text-3xl text-gray-600 cursor-pointer hover:text-white"
               onclick="closeSkinModal()">&times;</span>
 
         <div class="flex justify-center mb-8">
@@ -98,25 +107,14 @@
 
 <script src="script.js"></script>
 
-<!-- NEW JS FEATURE -->
+<!-- TAB SWITCH -->
 <script>
 function switchTab(tabName, element) {
-    // remove active
     document.querySelectorAll(".tab-btn").forEach(btn => btn.classList.remove("active"));
-
-    // add active to clicked
     element.classList.add("active");
-
-    // animation effect
-    element.classList.add("scale-110");
-    setTimeout(() => {
-        element.classList.remove("scale-110");
-    }, 150);
-
-    // call your existing logic
     loadTierData(tabName);
 }
 </script>
 
 </body>
-            </html>
+                </html>
