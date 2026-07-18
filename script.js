@@ -1,63 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Horizon Tiers</title>
-
-<script src="https://cdn.tailwindcss.com"></script>
-</head>
-
-<body class="bg-black text-white p-4">
-
-<!-- HEADER -->
-<header class="max-w-6xl mx-auto flex justify-between items-center mb-6">
-
-<div>
-<p class="text-xs text-gray-500">Developer</p>
-<h2 class="text-xl text-purple-400 font-bold">POJAVHITGOAT1</h2>
-</div>
-
-<button onclick="unlockAndAdd()"
-class="bg-purple-600 px-3 py-1 text-sm rounded-full">
-➕
-</button>
-
-</header>
-
-<!-- TITLE -->
-<h1 class="text-center text-4xl font-black mb-6">
-HORIZON <span class="text-purple-500">TIERS</span>
-</h1>
-
-<!-- GAMEMODE -->
-<div class="flex justify-center gap-3 mb-6">
-<button onclick="switchMode('Overall')" class="px-3 py-1 bg-gray-800 rounded">Overall</button>
-<button onclick="switchMode('Crystal')" class="px-3 py-1 bg-gray-800 rounded">Crystal</button>
-<button onclick="switchMode('Sword')" class="px-3 py-1 bg-gray-800 rounded">Sword</button>
-</div>
-
-<!-- PLAYERS -->
-<div id="tiers-container" class="max-w-3xl mx-auto"></div>
-
-<!-- MODAL -->
-<div id="skinModal" class="hidden fixed inset-0 bg-black/70 flex justify-center items-center">
-<div class="bg-[#161618] p-6 rounded-xl text-center w-64">
-
-<span onclick="closeModal()" class="cursor-pointer text-2xl float-right">×</span>
-
-<img id="modalAvatar" class="mx-auto mb-4 w-24">
-
-<h3 id="modalName" class="text-xl font-bold"></h3>
-<p id="modalTier"></p>
-<p id="modalPts" class="text-yellow-400 text-xl"></p>
-
-</div>
-</div>
-
-<script>
-
 // 📦 DEFAULT DATA
 let players = {
     Overall: [],
@@ -140,6 +80,8 @@ function unlockAndAdd() {
 function loadPlayers() {
 
     let container = document.getElementById("tiers-container");
+    if (!container) return;
+
     container.innerHTML = "";
 
     if (!players[currentMode]) return;
@@ -173,7 +115,7 @@ function loadPlayers() {
     });
 }
 
-// 🗑️ DELETE PLAYER
+// 🗑️ DELETE
 function deletePlayer(index, event) {
 
     event.stopPropagation();
@@ -213,9 +155,6 @@ function closeModal() {
 }
 
 // 🚀 INIT
-window.onload = loadPlayers;
-
-</script>
-
-</body>
-</html>
+window.onload = () => {
+    loadPlayers();
+};
